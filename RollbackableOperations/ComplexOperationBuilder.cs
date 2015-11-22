@@ -48,7 +48,7 @@ namespace RollbackableOperations
             {
                 if (FirstOperation != null)
                 {
-                    ConstructedOperation.AddOperationAtTheStart(FirstOperation.Operation, FinalOperation.ExecutionConfiguration);
+                    ConstructedOperation.AddOperationAtTheStart(FirstOperation.Operation, FirstOperation.ExecutionConfiguration);
                 }
 
                 if (FinalOperation != null)
