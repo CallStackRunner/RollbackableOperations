@@ -1,0 +1,13 @@
+﻿1) AtomicOperation should throw ExecutionHandlerNotSpecifiedException if no handler specified
+2) AtomicOperation should throw RollbackHandlerNotSpecifiedException if no handler specified
+3) AtomicOperation should handle non-handled exception in handlers and consider it a failed OperationResult with exception message
+4) ComplexOperation should execute operations in right order
+5) ComplexOperation should rollback all operations in reverse order in case of some non-first operation failure
+6) ComplexOperation should return OperationResult corresponding to failed operation
+7) ComplexOperation should handle failed operation rollback and return OperationResult containing both of datas: failed execution result message and failed rollback result message
+8) ComplexOperation should rollback operations in reverse order
+9) ComplexOperation should handle rollback operation failure and return corresponding OperationResult
+10) ComplexOperationBuilder should construct operation with starting handler before any other
+11) ComplexOperationBuilder should construct operation with ending handler after any other
+12) ComplexOperationBuilder should construct operation with nested operations following in right order
+13) ComplexOperation should rollback failed operation itself if configured
