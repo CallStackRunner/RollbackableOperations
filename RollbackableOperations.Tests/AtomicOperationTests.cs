@@ -10,20 +10,18 @@ namespace RollbackableOperations.Tests
         public void AtomicOperationShouldThrowExceptionOnExecuteIfNoExecutionHandlerSpecified()
         {
             var operation = new AtomicOperation();
-            Assert.Throws<ExecutionHandlerNotSpecifiedException>(() => { operation.Execute(); });
-
-            operation.ExecutionHandler = () => null;
-            operation.Execute();
+            var result = operation.Execute();
+            Assert.That(result.Succeeded, Is.True);
+            Assert.That(result.Message, Is.Empty);
         }
 
         [Test]
-        public void AtomicOperationShouldThrowExceptionOnRollbackIfNoRollbackHandlerSpecified()
+        public void AtomicOperationShouldReturnSuccessResultFromRollbackIfNoRollbackHandlerSpecified()
         {
             var operation = new AtomicOperation();
-            Assert.Throws<RollbackHandlerNotSpecifiedException>(() => { operation.Rollback(); });
-
-            operation.RollbackHandler = () => null;
-            operation.Rollback();
+            var result = operation.Rollback();
+            Assert.That(result.Succeeded, Is.True);
+            Assert.That(result.Message, Is.Empty);
         }
 
         [Test]

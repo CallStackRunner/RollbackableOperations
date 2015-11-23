@@ -11,7 +11,7 @@ namespace RollbackableOperations
         {
             if (ExecutionHandler == null)
             {
-                throw new ExecutionHandlerNotSpecifiedException();
+                return OperationResult.Success;
             }
 
             try
@@ -28,7 +28,7 @@ namespace RollbackableOperations
         {
             if (RollbackHandler == null)
             {
-                throw new RollbackHandlerNotSpecifiedException();
+                return OperationResult.Success;
             }
 
             try
