@@ -44,7 +44,6 @@
     <Compile Include="AtomicOperationBuilder.cs" />
     <Compile Include="ComplexOperation.cs" />
     <Compile Include="ComplexOperationBuilder.cs" />
-    <Compile Include="ExecutionHandlerNotSpecifiedException.cs" />
     <Compile Include="IExecutable.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="IRollbackable.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="OperationBuilderBase.cs" />
     <Compile Include="OperationExecutionConfiguration.cs" />
     <Compile Include="OperationResult.cs" />
-    <Compile Include="RollbackHandlerNotSpecifiedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
