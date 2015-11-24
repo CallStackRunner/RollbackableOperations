@@ -42,6 +42,12 @@ namespace RollbackableOperations
             return this;
         }
 
+        public ComplexOperationBuilder WithConfiguration(ComplexOperationExecutionConfiguration configuration)
+        {
+            ConstructedOperation.Configuration = configuration;
+            return this;
+        }
+
         public new ComplexOperation Operation
         {
             get

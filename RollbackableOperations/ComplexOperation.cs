@@ -7,6 +7,9 @@ namespace RollbackableOperations
     {
         private IList<NestedOperation> NestedOperations { get; set; }  = new List<NestedOperation>();
 
+        public ComplexOperationExecutionConfiguration Configuration { get; set; } =
+            ComplexOperationExecutionConfiguration.Default;
+
         public IEnumerable<IOperation> Operations
         {
             get { return NestedOperations.Select(operation => operation.Operation); }
@@ -38,18 +41,21 @@ namespace RollbackableOperations
                 var executionResult = operation.item.Operation.Execute();
                 if (!executionResult.Succeeded)
                 {
-                    foreach (var previousOperation in NestedOperations
-                        .Take(operation.item.ExecutionConfiguration.RollbackOperationItselftOnFail
-                            ? operation.index + 1
-                            : operation.index)
-                        .Reverse())
+                    if (!Configuration.DoNotRollbackOnExecutionFailure)
                     {
-                        var rollbackResult = previousOperation.Operation.Rollback();
-                        if (!rollbackResult.Succeeded)
+                        foreach (var previousOperation in NestedOperations
+                            .Take(operation.item.ExecutionConfiguration.RollbackOperationItselftOnFail
+                                ? operation.index + 1
+                                : operation.index)
+                            .Reverse())
                         {
-                            return
-                                OperationResult.Fail(
-                                    $"Execution fail cause: {executionResult.Message}. Rollback fail cause: {rollbackResult.Message}");
+                            var rollbackResult = previousOperation.Operation.Rollback();
+                            if (!rollbackResult.Succeeded)
+                            {
+                                return
+                                    OperationResult.Fail(
+                                        $"Execution fail cause: {executionResult.Message}. Rollback fail cause: {rollbackResult.Message}");
+                            }
                         }
                     }
 
