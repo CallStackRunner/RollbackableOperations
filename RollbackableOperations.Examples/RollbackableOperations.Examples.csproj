@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtomicOperationsUsage.cs" />
+    <Compile Include="ComplexOperationsUsage.cs" />
+    <Compile Include="ExecutionRollbackFailureHandling.cs" />
+    <Compile Include="FailedOperationsSelfRollbackConfiguration.cs" />
+    <Compile Include="NestedComplexOperationsUsage.cs" />
+    <Compile Include="OperationsExecutionFailureHandling.cs" />
+    <Compile Include="OperationsUnhandledExceptionsHandling.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
