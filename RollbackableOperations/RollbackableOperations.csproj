@@ -38,6 +38,7 @@
     <Compile Include="AtomicOperationBuilder.cs" />
     <Compile Include="ComplexOperation.cs" />
     <Compile Include="ComplexOperationBuilder.cs" />
+    <Compile Include="ComplexOperationExecutionConfiguration.cs" />
     <Compile Include="IExecutable.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="IRollbackable.cs" />
