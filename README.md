@@ -1,3 +1,5 @@
+[NuGet](https://www.nuget.org/packages/RollbackableOperations)
+
 ## What you already can do
 1. Split [atomic operation's](https://github.com/CallStackRunner/RollbackableOperations/wiki/Atomic-operation) execution and rollback logic with further independent invocation of each one
 2. Provide an operation execution/rollback results in your logic, containing a fact about either success or failure (more useful in composite operations which are discussed below)
