@@ -54,6 +54,15 @@ namespace RollbackableOperations.Tests
             Assert.That(operation.Operation.Operations, Is.EqualTo(stubs));
         }
 
+        [Test]
+        public void ComplexOperationBuilderShouldConstructOperationWithConfiguration()
+        {
+            var operation = ComplexOperationBuilder.Create()
+                .WithConfiguration(new ComplexOperationExecutionConfiguration() {DoNotRollbackOnExecutionFailure = true})
+                .Operation;
+            Assert.That(operation.Configuration.DoNotRollbackOnExecutionFailure, Is.EqualTo(true));
+        }
+
         private IOperation GetOperationStub(string id)
         {
             return new OperationStub() {Id = id};

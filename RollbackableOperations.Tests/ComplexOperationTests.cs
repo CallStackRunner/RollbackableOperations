@@ -129,6 +129,27 @@ namespace RollbackableOperations.Tests
             Assert.That(items, Is.EqualTo(new[] { 4, 8, -15, -16, -23 }));
         }
 
+        [Test]
+        public void ComplexOperationShouldNotRollbackChangesOnFailureIfCorrespondingConfigurationSpecified()
+        {
+            var items = new List<int>();
+            var operation = new ComplexOperation();
+
+            operation.AddOperationAtTheEnd(GetTestingAtomicOperation(4, items, OperationResult.Success, OperationResult.Success));
+            operation.AddOperationAtTheEnd(GetTestingAtomicOperation(8, items, OperationResult.Success, OperationResult.Success));
+            operation.AddOperationAtTheEnd(GetTestingAtomicOperation(15, items, OperationResult.Success, OperationResult.Success));
+            operation.AddOperationAtTheEnd(GetTestingAtomicOperation(16, items, OperationResult.Fail(), OperationResult.Success));
+            operation.AddOperationAtTheEnd(GetTestingAtomicOperation(23, items, OperationResult.Success, OperationResult.Success));
+            operation.Configuration = new ComplexOperationExecutionConfiguration()
+            {
+                DoNotRollbackOnExecutionFailure = true
+            };
+
+            operation.Execute();
+
+            Assert.That(items, Is.EqualTo(new[] { 4, 8, 15, 16 }));
+        }
+
         private AtomicOperation GetTestingAtomicOperation(int item, 
             IList<int> items, 
             OperationResult executionResult,
